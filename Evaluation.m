@@ -9,7 +9,9 @@ for vt=Vr(1):model(5):Vr(2)
         [xt,traj]=GenerateTrajectory(x,vt,ot,evalParam(4),model);  %evalParam(4),前向模拟时间;
         % 各评价函数的计算
         heading=CalcHeadingEval(xt,goal);
-        dist=CalcDistEval(xt,ob,R);
+        dist=CalcDistEval(xt,ob,R);  
+        Predist=CalcPreDist(xt,ob,R);
+        dist=dist+Predist;
         vel=abs(vt);
         % 制动距离的计算
         stopDist=CalcBreakingDist(vel,model);
